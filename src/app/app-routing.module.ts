@@ -1,7 +1,13 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { NgModule } from '@angular/core';
+
+const routes: Routes = [
+  {
+    path: 'faker-imp',
+    loadChildren: () => import('./faker-module/faker-module.module').then(m => m.FakerModuleModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

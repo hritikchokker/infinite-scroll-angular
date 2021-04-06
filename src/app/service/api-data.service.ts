@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiDataService {
-
+  pageNo = 1;
   constructor(private http: HttpClient) { }
 
-  getRandomFact(): Observable<Fact[]> {
+  getRandomFact(data?: any): Observable<Fact[]> {
     const month = Math.floor(Math.random() * 11) + 1;
     let maxDay = 30;
     if (month === 2) {
@@ -19,5 +19,9 @@ export class ApiDataService {
     }
     const day = Math.floor(Math.random() * maxDay) + 1;
     return this.http.get<Fact[]>(`http://numbersapi.com/${month}/${day}/date?json`);
+  }
+
+  getDataFromFaker(): Observable<any> {
+    return this.http.get(`https://api.instantwebtools.net/v1/passenger?page=${++this.pageNo} & size= 10`);
   }
 }
